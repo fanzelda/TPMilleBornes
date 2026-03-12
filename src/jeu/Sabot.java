@@ -22,15 +22,15 @@ public class Sabot implements Iterable<Carte> {
         private boolean nextEffectue = false;
         private int nbOpeRef = nbOpe;
         
-        @Override
-        public boolean hasNext() {
-            return idIterateur < nbCartes;
-        }
-        
         private void verifConcurrence() {
             if (nbOpe != nbOpeRef) {
                 throw new ConcurrentModificationException();
             }
+        }
+        
+        @Override
+        public boolean hasNext() {
+            return idIterateur < nbCartes;
         }
         
         public Carte next() {
@@ -77,8 +77,9 @@ public class Sabot implements Iterable<Carte> {
             throw new IllegalStateException();
         }
         else {
-            tabCartes[nbCartes] = carte;
+        	tabCartes[nbCartes] = carte;
             nbCartes++;
+            nbOpe++;
         }
     }
     

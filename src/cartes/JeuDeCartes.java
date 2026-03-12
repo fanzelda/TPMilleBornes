@@ -25,7 +25,10 @@ public class JeuDeCartes {
 		StringBuilder result = new StringBuilder();
 		result.append("JEU :\n\n");
 		for (int i = 0; i < typesDeCartes.length; i++) {
-			result.append(typesDeCartes[i].getNbExemplaires() + " " + typesDeCartes[i].getCarte() + "\n");
+			result.append(typesDeCartes[i].getNbExemplaires());
+			result.append(" ");
+			result.append(typesDeCartes[i].getCarte());
+			result.append("\n");
 		}
 		return result.toString();
 	}
@@ -45,6 +48,23 @@ public class JeuDeCartes {
 		}
 		return tabCartes;
 	}
+	
+	public boolean checkCount() {
+		Carte[] tabC = donnerCartes();
+		for(Configuration config : typesDeCartes) {
+			int nbEx = compteCarte(config.getCarte(),tabC);
+			if (nbEx != config.getNbExemplaires()) return false;
+		}
+		return true;
+	}
+	
+	private int compteCarte(Carte carte, Carte[] tabC) {
+		int i = 0;
+		for (Carte carte2 : tabC) {
+			if(carte2.equals(carte)) i++;
+		}
+		return i;
+	}
 
 	private static class Configuration {
 		private int nbExemplaires;
@@ -62,6 +82,5 @@ public class JeuDeCartes {
 		private Carte getCarte() {
 			return carte;
 		}
-
 	}
 }
