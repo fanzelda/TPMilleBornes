@@ -8,6 +8,11 @@ import java.util.ListIterator;
 import java.util.Random;
 
 public class GestionCartes {
+	
+	private GestionCartes(){
+		throw new IllegalStateException();
+	}
+	
 //	public static <E> E extraire(List<E> liste) {
 //		int index = new Random().nextInt(liste.size());
 //		return liste.remove(index);
@@ -31,9 +36,10 @@ public class GestionCartes {
 		return listeMelangee;
 	}
 	
-	public static <T> boolean verifierMelange(List<T> liste, List<T> listeMelange) {
+	public static <T> boolean verifierMelange(List<T> liste, List<T> listeMelangee) {
+		if(liste.size()!=listeMelangee.size()) return false;
 		for (T t : liste) {
-			if ((Collections.frequency(liste, t) != Collections.frequency(listeMelange, t))) {
+			if ((Collections.frequency(liste, t) != Collections.frequency(listeMelangee, t))) {
 				return false;
 			}
 		}
@@ -56,10 +62,9 @@ public class GestionCartes {
 	}
 
 	public static <T> boolean verifierRassemblement(List<T> liste) {
-		ListIterator<T> iter = liste.listIterator(0);
-		while (iter.hasNext()) {
-			T curr = iter.next();
-
+		for (ListIterator<T> iter = liste.listIterator(); iter.hasNext();) {
+			T curr = (T) iter.next();
+			
 			if (iter.hasNext()) {
 				T prochain = iter.next();
 
@@ -68,18 +73,17 @@ public class GestionCartes {
 					}
 				iter.previous();
 			}
-
+			
 		}
+
 		return true;
 	}
 
 	private static <T> boolean isSimilaire(List<T> liste, int index, T elem) {
-		ListIterator<T> iter = liste.listIterator(index);
-		while (iter.hasNext()) {
+		for (ListIterator<T> iter = liste.listIterator(); iter.hasNext();) {
 			if (iter.next().equals(elem)) {
 				return false;
 			}
-
 		}
 		return true;
 	}
