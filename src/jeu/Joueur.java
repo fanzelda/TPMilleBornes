@@ -38,4 +38,13 @@ public class Joueur {
 		donner(carte);
 		return carte;
 		}
+	
+	public void deposer(Carte c) {
+		zone.deposer(c);
+	}
+	
+	public void estDepotAutorise(Carte carte) {
+		zone.estDepotAutorise(carte);
+		
+	}
 }
