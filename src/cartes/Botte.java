@@ -10,4 +10,9 @@ public class Botte extends Probleme {
 	public String toString() {
 		return getType().getBotte();
 	}
+	
+	@Override
+	public int hashCode() {
+		return 31 * getType().hashCode();
+	}
 }

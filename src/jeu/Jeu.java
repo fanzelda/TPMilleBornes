@@ -2,6 +2,7 @@ package jeu;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import cartes.Carte;
@@ -10,6 +11,13 @@ import utils.GestionCartes;
 
 public class Jeu {
 	private Sabot sabot;
+	private LinkedHashSet<Joueur> joueurs;
+	
+	public void inscrire(Joueur ...joueursInscrire) {
+		for (Joueur joueur : joueurs) {
+			joueurs.add(joueur);
+		}
+	}
 
 	public Jeu() {
 		JeuDeCartes jeuCartes = new JeuDeCartes();
