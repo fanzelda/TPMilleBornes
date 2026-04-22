@@ -2,7 +2,9 @@ package jeu;
 
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
+import java.util.Set;
 
 import cartes.Attaque;
 import cartes.Bataille;
@@ -41,18 +43,19 @@ public class ZoneDeJeu {
 	}
 	
 	public void deposer(Carte c) {
-		if (c instanceof Borne borne) {
+		switch (c) {
+		case Borne borne:
 			pileBorne.addFirst(borne);
-		}
-		if (c instanceof Limite limite) {
+			break;
+		case Limite limite:
 			pileLimite.addFirst(limite);
-		}
-		if (c instanceof Bataille bataille) {
+			break;
+		case Bataille bataille:
 			pileBataille.addFirst(bataille);
-		}
-		else {
-			bottes.add((Botte) c);
-		}
+				break;
+			default:
+				bottes.add((Botte) c);
+	}
 	}
 	
 //	public boolean peutAvancer() {
@@ -155,4 +158,14 @@ public class ZoneDeJeu {
 		
 		return true;
 	}
+
+	public Set<Botte> getBottes() {
+		return bottes;
+	}
+
+	public List<Bataille> getPileBataille() {
+		return pileBataille;
+	}
+
+	
 }
