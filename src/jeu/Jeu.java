@@ -2,9 +2,13 @@ package jeu;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.NavigableSet;
+import java.util.TreeSet;
 
 import cartes.Carte;
 import cartes.JeuDeCartes;
@@ -16,6 +20,19 @@ public class Jeu {
 	private Sabot sabot;
 	private LinkedHashSet<Joueur> joueurs = new LinkedHashSet<>();
 	private Iterator<Joueur> iterJoueurs;
+	
+
+	public Jeu() {
+		JeuDeCartes jeuCartes = new JeuDeCartes();
+		Carte[] tabCarte = jeuCartes.donnerCartes();
+		List<Carte> listeCartes = new ArrayList<>();
+
+		Collections.addAll(listeCartes, tabCarte);
+		listeCartes = GestionCartes.melanger(listeCartes);
+		
+		tabCarte = listeCartes.toArray(new Carte[0]);
+		this.sabot = new Sabot(tabCarte);
+	}
 	
 	public void inscrire(Joueur ...joueursInscrire) {
 		for (Joueur joueur : joueursInscrire) {
@@ -29,18 +46,6 @@ public class Jeu {
 				joueur.donner(sabot.piocher());
 			}
 		}
-	}
-
-	public Jeu() {
-		JeuDeCartes jeuCartes = new JeuDeCartes();
-		Carte[] tabCarte = jeuCartes.donnerCartes();
-		List<Carte> listeCartes = new ArrayList<>();
-
-		Collections.addAll(listeCartes, tabCarte);
-		listeCartes = GestionCartes.melanger(listeCartes);
-		
-		tabCarte = listeCartes.toArray(new Carte[0]);
-		this.sabot = new Sabot(tabCarte);
 	}
 	
 	public String jouerTour(Joueur joueur) {
@@ -93,13 +98,51 @@ public class Jeu {
 			int km = courant.donnerKmParcourus();
 			if (km >= 1000) {
 				str.append(courant.getNom()).append(" a parcouru ").append(Integer.toString(km));
-				str.append(" km. Il remporte la partie.\n");
+				str.append(" km. Il remporte la partie.\n\n");
+				str.append("Le Classement est :\n\n");
+				str.append(afficherClassement(classement()));
 				return str.toString();
 			}
 		}
 		
-		str.append("Le sabot est vide, fin de la partie.\n");
+		str.append("Le sabot est vide, fin de la partie.\n\n");
+		str.append("Le Classement est :\n\n");
+		str.append(afficherClassement(classement()));
 		return str.toString();
+	}
+	
+	private String afficherClassement(List<Joueur> liste) {
+		StringBuilder out = new StringBuilder();
+		for (Iterator<Joueur> iterator = liste.iterator(); iterator.hasNext();) {
+			Joueur joueur = iterator.next();
+			out.append(joueur.getNom());
+			out.append(" a fini avec ");
+			out.append(joueur.donnerKmParcourus());
+			out.append(" km\n");
+		}
+		return out.toString();
+	}
+	
+	public List<Joueur> classement() {
+		NavigableSet<Joueur> joueurDecroissant = new TreeSet<>(
+			new Comparator<Joueur>() {
+				@Override
+				public int compare(Joueur J1, Joueur J2) {
+					if (J2.donnerKmParcourus()-J1.donnerKmParcourus()==0	) return 1;
+					return J2.donnerKmParcourus()-J1.donnerKmParcourus();
+				}
+			}
+		); //Création TreeSet
+		
+		joueurDecroissant.addAll(joueurs);
+		
+		List<Joueur> listeJoueursDec = new LinkedList<>();
+		for (Iterator<Joueur> iterator = joueurDecroissant.iterator(); iterator.hasNext();) {
+			Joueur joueur = iterator.next();
+			listeJoueursDec.add(joueur);
+		} //Remplissage liste
+		
+		return listeJoueursDec;
 	}
 
 }

@@ -179,73 +179,73 @@ public class TestZoneDeJeu {
 //			peut avancer ? true
 
 		// TP4 Partie 1
-		boolean depotOK = false;
-		ZoneDeJeu zoneDeJeu = new ZoneDeJeu();
-		// Feu rouge
-		System.out.println("Deposer carte Feu rouge");
-		depotOK = zoneDeJeu.estDepotAutorise(Cartes.FEU_ROUGE);
-		System.out.println("d�p�t ok ? " + depotOK);
-		if (depotOK) {
-			zoneDeJeu.deposer(Cartes.FEU_ROUGE);
-		}
-		System.out.println("peut avancer ? " + zoneDeJeu.peutAvancer());
-		// Botte Vehicule prioritaire
-		System.out.println("Deposer carte Vehicule prioritaire");
-		depotOK = zoneDeJeu.estDepotAutorise(Cartes.PRIORITAIRE);
-		System.out.println("d�p�t ok ? " + depotOK);
-		if (depotOK) {
-			zoneDeJeu.deposer(Cartes.PRIORITAIRE);
-		}
-		System.out.println("peut avancer ? " + zoneDeJeu.peutAvancer());
-		// accident
-		System.out.println("Deposer carte attaque - accident");
-		depotOK = zoneDeJeu.estDepotAutorise(new Attaque(Type.ACCIDENT));
-		System.out.println("d�p�t ok ? " + depotOK);
-		if (depotOK) {
-			zoneDeJeu.deposer(new Attaque(Type.ACCIDENT));
-		}
-		System.out.println("peut avancer ? " + zoneDeJeu.peutAvancer());
-	
-		// botte roue de secours
-		System.out.println("Deposer botte - roue de secours");
-		depotOK = zoneDeJeu.estDepotAutorise(new Botte(Type.CREVAISON));
-		if (depotOK) {
-			zoneDeJeu.deposer(new Botte(Type.CREVAISON));
-		}
-		System.out.println("d�p�t ok ? " + depotOK);
-		System.out.println("peut avancer ? " + zoneDeJeu.peutAvancer());
-		// botte as du volant
-		System.out.println("Deposer carte as du volant");
-		depotOK = zoneDeJeu.estDepotAutorise(new Botte(Type.ACCIDENT));
-		if (depotOK) {
-			zoneDeJeu.deposer(new Botte(Type.ACCIDENT));
-		}
-		System.out.println("d�p�t ok ? " + depotOK);
-		System.out.println("peut avancer ? " + zoneDeJeu.peutAvancer());
-		// Feu vert
-		System.out.println("Deposer carte Feu vert");
-		depotOK = zoneDeJeu.estDepotAutorise(Cartes.FEU_VERT);
-		System.out.println("d�p�t ok ? " + depotOK);
-		if (depotOK) {
-			zoneDeJeu.deposer(Cartes.FEU_VERT);
-		}
-		System.out.println("peut avancer ? " + zoneDeJeu.peutAvancer());
-		// D�pot attaque accident
-		System.out.println("Deposer carte accident");
-		depotOK = zoneDeJeu.estDepotAutorise(new Attaque(Type.ACCIDENT));
-		System.out.println("d�p�t ok ? " + depotOK);
-		if (depotOK) {
-			zoneDeJeu.deposer(new Attaque(Type.ACCIDENT));
-		}
-		System.out.println("peut avancer ? " + zoneDeJeu.peutAvancer());
-		// D�pot limitation de vitesse 50 bornes
-		System.out.println("Deposer carte limite - 50");
-		depotOK = zoneDeJeu.estDepotAutorise(new DebutLimite());
-		System.out.println("d�p�t ok ? " + depotOK);
-		if (depotOK) {
-			zoneDeJeu.deposer(new DebutLimite());
-		}
-		System.out.println("peut avancer ? " + zoneDeJeu.peutAvancer());
+//		boolean depotOK = false;
+//		ZoneDeJeu zoneDeJeu = new ZoneDeJeu();
+//		// Feu rouge
+//		System.out.println("Deposer carte Feu rouge");
+//		depotOK = zoneDeJeu.estDepotAutorise(Cartes.FEU_ROUGE);
+//		System.out.println("d�p�t ok ? " + depotOK);
+//		if (depotOK) {
+//			zoneDeJeu.deposer(Cartes.FEU_ROUGE);
+//		}
+//		System.out.println("peut avancer ? " + zoneDeJeu.peutAvancer());
+//		// Botte Vehicule prioritaire
+//		System.out.println("Deposer carte Vehicule prioritaire");
+//		depotOK = zoneDeJeu.estDepotAutorise(Cartes.PRIORITAIRE);
+//		System.out.println("d�p�t ok ? " + depotOK);
+//		if (depotOK) {
+//			zoneDeJeu.deposer(Cartes.PRIORITAIRE);
+//		}
+//		System.out.println("peut avancer ? " + zoneDeJeu.peutAvancer());
+//		// accident
+//		System.out.println("Deposer carte attaque - accident");
+//		depotOK = zoneDeJeu.estDepotAutorise(new Attaque(Type.ACCIDENT));
+//		System.out.println("d�p�t ok ? " + depotOK);
+//		if (depotOK) {
+//			zoneDeJeu.deposer(new Attaque(Type.ACCIDENT));
+//		}
+//		System.out.println("peut avancer ? " + zoneDeJeu.peutAvancer());
+//	
+//		// botte roue de secours
+//		System.out.println("Deposer botte - roue de secours");
+//		depotOK = zoneDeJeu.estDepotAutorise(new Botte(Type.CREVAISON));
+//		if (depotOK) {
+//			zoneDeJeu.deposer(new Botte(Type.CREVAISON));
+//		}
+//		System.out.println("d�p�t ok ? " + depotOK);
+//		System.out.println("peut avancer ? " + zoneDeJeu.peutAvancer());
+//		// botte as du volant
+//		System.out.println("Deposer carte as du volant");
+//		depotOK = zoneDeJeu.estDepotAutorise(new Botte(Type.ACCIDENT));
+//		if (depotOK) {
+//			zoneDeJeu.deposer(new Botte(Type.ACCIDENT));
+//		}
+//		System.out.println("d�p�t ok ? " + depotOK);
+//		System.out.println("peut avancer ? " + zoneDeJeu.peutAvancer());
+//		// Feu vert
+//		System.out.println("Deposer carte Feu vert");
+//		depotOK = zoneDeJeu.estDepotAutorise(Cartes.FEU_VERT);
+//		System.out.println("d�p�t ok ? " + depotOK);
+//		if (depotOK) {
+//			zoneDeJeu.deposer(Cartes.FEU_VERT);
+//		}
+//		System.out.println("peut avancer ? " + zoneDeJeu.peutAvancer());
+//		// D�pot attaque accident
+//		System.out.println("Deposer carte accident");
+//		depotOK = zoneDeJeu.estDepotAutorise(new Attaque(Type.ACCIDENT));
+//		System.out.println("d�p�t ok ? " + depotOK);
+//		if (depotOK) {
+//			zoneDeJeu.deposer(new Attaque(Type.ACCIDENT));
+//		}
+//		System.out.println("peut avancer ? " + zoneDeJeu.peutAvancer());
+//		// D�pot limitation de vitesse 50 bornes
+//		System.out.println("Deposer carte limite - 50");
+//		depotOK = zoneDeJeu.estDepotAutorise(new DebutLimite());
+//		System.out.println("d�p�t ok ? " + depotOK);
+//		if (depotOK) {
+//			zoneDeJeu.deposer(new DebutLimite());
+//		}
+//		System.out.println("peut avancer ? " + zoneDeJeu.peutAvancer());
 		
 		//RESULTAT ATTENDU POUR LE TP4 Partie 1
 //		Deposer carte Feu rouge

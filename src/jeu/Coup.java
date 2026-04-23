@@ -5,10 +5,6 @@ import cartes.Carte;
 import cartes.DebutLimite;
 
 public class Coup {
-	@Override
-	public String toString() {
-		return "depose la carte " + carte + " dans sa zone de jeu";
-	}
 
 	private Joueur courant;
 	private Carte carte;
@@ -16,12 +12,15 @@ public class Coup {
 	
 	
 	protected Coup(Joueur courant, Carte carte, Joueur cible) {
-		super();
 		this.courant = courant;
 		this.carte = carte;
 		this.cible = cible;
 	}
 
+	@Override
+	public String toString() {
+		return "depose la carte " + carte + " dans sa zone de jeu";
+	}
 
 	public Joueur getCourant() {
 		return courant;

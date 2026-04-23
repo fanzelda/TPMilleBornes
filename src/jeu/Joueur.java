@@ -50,8 +50,8 @@ public class Joueur {
 		return carte;
 		}
 	
-	public void deposer(Carte c) {
-		zone.deposer(c);
+	public void deposer(Carte carte) {
+		zone.deposer(carte);
 	}
 	
 	public void estDepotAutorise(Carte carte) {
@@ -63,17 +63,21 @@ public class Joueur {
 		Set<Coup> coupsPossibles = new HashSet<>();
 		for (Joueur courant : participants) {
 			MainJoueur mainJoueur = courant.getMain();
-			for (Iterator<Carte> iterator = mainJoueur.iterator(); iterator.hasNext();) {
-				Carte carte = iterator.next();
-				for (Joueur cible : participants) {
-					Coup coup = new Coup(courant,carte,cible);
-					if(coup.estValide()) {
-						coupsPossibles.add(coup);
-					}
+			checkCarte(participants, coupsPossibles, courant, mainJoueur);
+		}
+		return coupsPossibles;
+	}
+
+	private void checkCarte(Set<Joueur> participants, Set<Coup> coupsPossibles, Joueur courant, MainJoueur mainJoueur) {
+		for (Iterator<Carte> iterator = mainJoueur.iterator(); iterator.hasNext();) {
+			Carte carte = iterator.next();
+			for (Joueur cible : participants) {
+				Coup coup = new Coup(courant,carte,cible);
+				if(coup.estValide()) {
+					coupsPossibles.add(coup);
 				}
 			}
 		}
-		return coupsPossibles;
 	}
 	
 	public Set<Coup> coupsDefausse() {
